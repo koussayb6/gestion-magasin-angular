@@ -1,0 +1,16 @@
+<form #f="ngForm">
+  <label>idStock</label>
+  <input type="text" class="form-control"  name="idStock" ngModel [(ngModel)]="stock.idStock">
+
+  <label>qteStock</label>
+  <input type="text" class="form-control" name="qteStock" ngModel [(ngModel)]="stock.qteStock">
+
+  <label>qteMin</label>
+  <input type="text" class="form-control"  name="qteMin" ngModel [(ngModel)]="stock.qteMin">
+
+  <label>libelleStock</label>
+  <input type="text" class="form-control"  name="libelleStock" ngModel [(ngModel)]="stock.libelleStock">
+
+
+  <input type="submit" value="save" (click)="sendDataToParent(f.value)">
+</form>
