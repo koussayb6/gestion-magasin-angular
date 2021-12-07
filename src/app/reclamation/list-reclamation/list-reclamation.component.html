@@ -40,28 +40,38 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0">
-            <table class="table table-hover text-nowrap">
+            <table class="table table-hover text-nowrap" border="3">
               <thead>
 
               </thead>
               <tbody>
-              <div *ngFor="let stock of stocks">
+              <div *ngFor="let reclamation of Reclamation ">
                 <tr>
-                  <td>{{stock.idStock}}</td>
-                  <td>{{stock.libelleStock}}</td>
-                  <td>{{stock.qteMin}}</td>
-                  <td>{{stock.qteStock}}</td>
+                  <td>{{reclamation.idReclamation}}</td>
+                  <td>{{reclamation.subject}}</td>
+                  <td>{{reclamation.description}}</td>
+                  <td>{{reclamation.statue}}</td>
+                  <td>{{reclamation.typereclamation}}</td>
+             <input type="submit" value="Update"  (click)="update(reclamation)" >
+                  <button (click)="delete(reclamation)">delete </button>
+                 <!-- <button (click)="showProducts(reclamation)">showProducts</button> -->
 
-                  <input type="submit" value="Update" class="btn btn-primary" (click)="update(stock)" >
-                  <button (click)="delete(stock)">delete </button>
-                  <button (click)="showProducts(stock)">showProducts</button>
 
                 </tr>
               </div>
 
               </tbody>
             </table>
+
+            <input type="submit" value="Ajouter Reclamation" (click)="add()">
+            <div *ngIf="show==true">
+              <app-add-reclamation (notif)="addReclamation($event)"></app-add-reclamation>
+            </div>
+            <div *ngIf="show2==true">
+              <app-edit-reclamation [reclamation]="reclamation" (notif)="updateReclamation($event)"></app-edit-reclamation>
+            </div>
           </div>
+
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -78,31 +88,9 @@
   </div><!-- /.container-fluid -->
 </section>
 
-<table border="1" class="table-bordered ">
 
 
 
 
-</table>
-<input type="submit" value="add stock" (click)="add()">
-<div *ngIf="show==true">
-  <app-add-stock (notif)="addStock($event)"></app-add-stock>
-</div>
-<div *ngIf="show2==true">
-  <app-add-stock [stock]="stock" (notif)="updateStock($event)"></app-add-stock>
-</div>
-<div *ngIf="show3==true">
-  <table border="1" class="table-bordered ">
-  <div *ngFor="let produit of products ">
-    <tr>
-      <td>{{produit.code}}</td>
-      <td>{{produit.idProduit}}</td>
-      <td>{{produit.libelle}}</td>
-      <td>{{produit.prixUnitaire}}</td>
 
-    </tr>
-  </div>
-
-  </table>
-</div>
 

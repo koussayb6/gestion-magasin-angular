@@ -1,0 +1,18 @@
+<form #f="ngForm">
+  <label>idReclamation</label>
+  <input type="text" class="form-control"  name="idReclamation" ngModel [(ngModel)]="reclamation.idReclamation">
+
+  <label>subject</label>
+  <input type="text" class="form-control" name="subject" ngModel [(ngModel)]="reclamation.subject">
+
+  <label>description</label>
+  <input type="text" class="form-control"  name="description" ngModel [(ngModel)]="reclamation.description">
+
+  <label>statue</label>
+  <input type="text" class="form-control"  name="statue" ngModel [(ngModel)]="reclamation.statue">
+
+  <label>Type De Reclamation</label>
+  <input type="text" class="form-control" name="typereclamation" ngModel [(ngModel)]="reclamation.typereclamation">
+
+  <input type="submit" value="save" (click)="sendDataToParent(f.value)">
+</form>
