@@ -38,58 +38,54 @@
         <table class="table">
           <thead>
           <tr>
-            <th>Libelle</th>
-            <th>Quantité minimale</th>
-            <th>Quantité STOCK</th>
-            <th >Actions</th>
+            <th>montantFacture</th>
+            <th>montantRemise</th>
+            <th>status</th>
+            <th>dateFacture</th>
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>
 
-            <tr *ngFor="let stock of stocks">
-              <td>{{stock.libelleStock}}</td>
-              <td>{{stock.qteMin}}</td>
-              <td>{{stock.qteStock}}</td>
+          <tr *ngFor="let facture of factures">
+            <td>{{facture.montantFacture}}</td>
+            <td>{{facture.montantRemise}}</td>
+            <td *ngIf="facture.active==true"><span class="badge badge-success">active</span> </td>
+            <td *ngIf="facture.active==false"><span class="badge badge-danger">annulée</span> </td>
+            <td>{{facture.dateFacture}}</td>
 
-             <td> <input type="submit" value="Update" class="btn btn-primary btn-sm m-1" (click)="update(stock)" >
-              <button class="btn btn-danger btn-sm m-1" (click)="delete(stock)">delete </button>
-              <button class="btn btn-dark btn-sm m-1" (click)="showProducts(stock)">showProducts</button>
-             </td>
-            </tr>
+            <td> <!--<input type="submit" value="Update" class="btn btn-primary btn-sm m-1" (click)="update(stock)" >
+              <button class="btn btn-danger btn-sm m-1" (click)="delete(stock)">delete </button>-->
+              <button class="btn btn-dark btn-sm m-1" (click)="showProducts(facture)">Details</button>
+            </td>
+          </tr>
 
           </tbody>
         </table>
       </div>
       <!-- /.card-body -->
     </div>
-
+    <input type="submit" value="add" class="btn btn-primary btn-sm m-1" (click)="addFacturetest()" >
   </div><!-- /.container-fluid -->
 </section>
 
-<table border="1" class="table-bordered ">
-
-
-
-
-</table>
+<!--
 <input type="submit" value="add stock" (click)="add()">
 <div *ngIf="show==true">
   <app-add-stock (notif)="addStock($event)"></app-add-stock>
 </div>
 <div *ngIf="show2==true">
   <app-add-stock [stock]="stock" (notif)="updateStock($event)"></app-add-stock>
-</div>
+</div>-->
 <div *ngIf="show3==true">
   <table border="1" class="table-bordered ">
-  <div *ngFor="let produit of products ">
-    <tr>
-      <td>{{produit.code}}</td>
-      <td>{{produit.idProduit}}</td>
-      <td>{{produit.libelle}}</td>
-      <td>{{produit.prixUnitaire}}</td>
+      <tr *ngFor="let detail of detailFactures ">
+        <td>{{detail.montantRemise}}</td>
+        <td>{{detail.pourcentageRemise}}</td>
+        <td>{{detail.qte}}</td>
+        <td>{{detail.prixTotal}}</td>
 
-    </tr>
-  </div>
+      </tr>
 
   </table>
 </div>
