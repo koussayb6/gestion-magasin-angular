@@ -1,4 +1,4 @@
-import {Produit} from "../stock/Produit";
+import {Produit} from "../produit/Produit";
 
 export class DetailFacture {
 

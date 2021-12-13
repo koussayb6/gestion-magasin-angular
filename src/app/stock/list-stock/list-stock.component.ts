@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StockService} from "../stock.service";
 import {Stock} from "../Stock";
-import {Produit} from "../Produit";
+import {Produit} from "../../produit/Produit";
 
 @Component({
   selector: 'app-list-stock',
@@ -16,6 +16,7 @@ export class ListStockComponent implements OnInit {
   show2:boolean=false;
   show3:boolean=false;
   stock!:Stock;
+  classes!:any;
   constructor(private serviceStock:StockService) { }
 
   ngOnInit(): void {
@@ -33,16 +34,18 @@ export class ListStockComponent implements OnInit {
     this.show=true;
   }
   addStock(stock:any){
-    this.stocks.push(stock);
     this.show=false;
+    console.log(stock);
     this.serviceStock.addStock(stock).subscribe((resultat)=>{
         console.log(resultat);
-        //this.stocks=resultat;
+        this.stocks.push(resultat);
       },
       (error)=>{
         console.log(error.status)
       }
     );
+    let close=document.getElementById("close");
+    close?.click();
 
   }
 
@@ -59,13 +62,20 @@ export class ListStockComponent implements OnInit {
     this.stock=stock;
 
   }
-  updateStock(stock:any){
+  updateStock(stock:Stock){
+    stock.idStock=this.stock.idStock;
     this.serviceStock.updateStock(stock).subscribe();
+    let close=document.getElementById("close");
+    close?.click();
     this.show2=false;
   }
   showProducts(stock:Stock){
     this.show3=true;
     this.products=stock.produits;
+  }
+
+  onfile(event:any){
+    console.log(event.target.files[0])
   }
 
 }

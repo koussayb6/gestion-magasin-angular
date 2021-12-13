@@ -9,7 +9,7 @@ import {Stock} from "../Stock";
 export class AddStockComponent implements OnInit {
   @Input() stock:Stock= new Stock();
   @Output() notif= new EventEmitter<Stock>();
-  //stock1= new Stock();
+ // stock1= new Stock();
   constructor() { }
 
   ngOnInit(): void {

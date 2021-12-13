@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Stock} from "../../stock/Stock";
-import {Produit} from "../../stock/Produit";
 import {StockService} from "../../stock/stock.service";
 import {DetailFacture} from "../DetailFacture";
 import {Facture} from "../Facture";
 import {FactureService} from "../facture.service";
+import {Produit} from "../../produit/Produit";
 
 @Component({
   selector: 'app-list-facture',

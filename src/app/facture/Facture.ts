@@ -1,4 +1,3 @@
-import {Produit} from "../stock/Produit";
 import {DetailFacture} from "./DetailFacture";
 
 export class Facture {

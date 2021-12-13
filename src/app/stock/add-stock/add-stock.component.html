@@ -1,16 +1,19 @@
-<form #f="ngForm">
-  <label>idStock</label>
-  <input type="text" class="form-control"  name="idStock" ngModel [(ngModel)]="stock.idStock">
 
-  <label>qteStock</label>
-  <input type="text" class="form-control" name="qteStock" ngModel [(ngModel)]="stock.qteStock">
+<div class="modal-body">
+  <form #f="ngForm" id="addStock">
 
-  <label>qteMin</label>
-  <input type="text" class="form-control"  name="qteMin" ngModel [(ngModel)]="stock.qteMin">
+    <div class="form-group">
+      <label for="qteMin">Quantité minimale</label>
+      <input type="text" class="form-control" id="qteMin"  name="qteMin" ngModel [(ngModel)]="stock.qteMin">
+    </div>
+    <div class="form-group">
+      <label for="libelleStock">libelle Stock</label>
+      <input type="text" class="form-control" id="libelleStock"  name="libelleStock" ngModel [(ngModel)]="stock.libelleStock">
+    </div>
 
-  <label>libelleStock</label>
-  <input type="text" class="form-control"  name="libelleStock" ngModel [(ngModel)]="stock.libelleStock">
-
-
-  <input type="submit" value="save" (click)="sendDataToParent(f.value)">
-</form>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <input type="submit" value="save" class="btn btn-primary" form="addStock" (click)="sendDataToParent(f.value)">
+</div>

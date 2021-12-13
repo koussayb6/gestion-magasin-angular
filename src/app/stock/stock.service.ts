@@ -16,8 +16,8 @@ export class StockService {
     return this.http.get<Stock[]>(this.baseurl+'sotcks');
   }
 
-  addStock(stock:any){
-    return this.http.post(this.baseurl+'addstock', stock, {
+  addStock(stock:any):Observable<Stock>{
+    return this.http.post<Stock>(this.baseurl+'addstock', stock, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

@@ -4,6 +4,7 @@ import {ReclamationService} from "../reclamation.service";
 
 import {StockService} from "../../stock/stock.service";
 import {Stock} from "../../stock/Stock";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-list-reclamation',
@@ -16,7 +17,16 @@ export class ListReclamationComponent implements OnInit {
   reclamation!:Reclamation;
   show:boolean=false;
   show2:boolean=false;
+  isClicked = false;
+  flag : any = false;
   constructor(private ReclamationService:ReclamationService) { }
+  toggle = true;
+  status = 'Confirmer';
+  start = 'start'
+
+  btnClick(){
+    this.flag = true;
+  }
 
   ngOnInit(): void {
     this.ReclamationService.getAll().subscribe((resultat)=>{
@@ -58,8 +68,10 @@ export class ListReclamationComponent implements OnInit {
     this.reclamation=reclamation;
 
   }
-  updateReclamation(reclamation:Reclamation){
-    this.ReclamationService.updateReclamation(reclamation).subscribe();
+  confirmeReclama(reclamation:Reclamation){
+    this.ReclamationService.confirmeReclama(reclamation).subscribe();
     this.show2=false;
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Confirmer' : 'Disable';
   }
 }

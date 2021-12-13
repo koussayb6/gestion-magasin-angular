@@ -1,0 +1,85 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Dashboard</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard v1</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row mx-1">
+      <div  style="transition: 0.3s ease-in-out all" class="card w-100">
+        <div class="card-header">
+          <h3 class="card-title">Simple Full Width Table</h3>
+
+          <div class="card-tools">
+            <input type="submit" value="add fournisseur" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="add()">
+
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>libelleFournisseur</th>
+              <th>codeFournisseur</th>
+              <th>Téléphone</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let fourn of fournisseurs">
+              <td>{{fourn.libelleFournisseur}}</td>
+              <td>{{fourn.codeFournisseur}}</td>
+              <td>28287447</td>
+              <td>fourn@fourn.fourn</td>
+
+              <td> <input type="submit"
+                          data-toggle="modal" data-target="#exampleModal"
+                          value="edit" class="btn btn-primary btn-sm m-1" (click)="update(fourn)" >
+                <button (click)="delete(fourn)" class="btn btn-danger btn-sm m-1">delete</button>
+                </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <app-edit-fournisseur *ngIf="show2; else elseblock" [fournisseur]="fournisseur" (notif)="updateFournisseur($event)"></app-edit-fournisseur>
+          <ng-template #elseblock>
+            <app-edit-fournisseur  (notif)="addFournisseur($event)"></app-edit-fournisseur>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+</section>

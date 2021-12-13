@@ -46,14 +46,18 @@
               </thead>
               <tbody>
               <div *ngFor="let reclamation of Reclamation ">
-                <tr>
+                <tr [ngClass]="{ 'colorRed' :flag }">
                   <td>{{reclamation.idReclamation}}</td>
                   <td>{{reclamation.subject}}</td>
                   <td>{{reclamation.description}}</td>
                   <td>{{reclamation.statue}}</td>
                   <td>{{reclamation.typereclamation}}</td>
-             <input type="submit" value="Update"  (click)="update(reclamation)" >
+          <input type="submit" value="Confirme" color="green"  (click)="confirmeReclama(reclamation)"
+                    [ngClass]="{'green' : toggle, 'red': !toggle}">
                   <button (click)="delete(reclamation)">delete </button>
+
+
+
                  <!-- <button (click)="showProducts(reclamation)">showProducts</button> -->
 
 
@@ -68,7 +72,7 @@
               <app-add-reclamation (notif)="addReclamation($event)"></app-add-reclamation>
             </div>
             <div *ngIf="show2==true">
-              <app-edit-reclamation [reclamation]="reclamation" (notif)="updateReclamation($event)"></app-edit-reclamation>
+              <app-edit-reclamation [reclamation]="reclamation" (notif)="confirmeReclama($event)"></app-edit-reclamation>
             </div>
           </div>
 
