@@ -7,9 +7,9 @@ import {Stock} from "../Stock";
   styleUrls: ['./add-stock.component.css']
 })
 export class AddStockComponent implements OnInit {
-  @Input() stock!:Stock;
+  @Input() stock:Stock= new Stock();
   @Output() notif= new EventEmitter<Stock>();
-  stock1= new Stock();
+ // stock1= new Stock();
   constructor() { }
 
   ngOnInit(): void {

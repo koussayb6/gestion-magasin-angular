@@ -18,85 +18,118 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
+    <div class="row mx-1">
+      <div [ngClass]="{'col-5' : show3}" style="transition: 0.3s ease-in-out all" class="card w-100">
+        <div class="card-header">
+          <h3 class="card-title">Simple Full Width Table</h3>
 
-    <!-- Main row -->
-    <div class="row">
-      <!-- Left col -->
-      <section class="col-lg-7 connectedSortable">
-        <!-- Custom tabs (Charts with tabs)-->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Gestion de stock</h3>
+          <div class="card-tools">
+            <input type="submit" value="add stock" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="add()">
 
-            <div class="card-tools">
-              <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                <div class="input-group-append">
-                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                </div>
-              </div>
-            </div>
           </div>
-          <!-- /.card-header -->
-          <div class="card-body table-responsive p-0">
-            <table class="table table-hover text-nowrap">
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>libelleStock</th>
+              <th>qteMin</th>
+              <th>qteStock</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr  *ngFor="let stock of stocks" [ngClass]="{'color-stock-close' : stock.qteStock-stock.qteMin<=10, 'color-stock-over' : stock.qteMin-stock.qteStock>=0,
+            'color-stock-green' : stock.qteMin-stock.qteStock<-10}">
+              <td>{{stock.libelleStock}}</td>
+              <td>{{stock.qteMin}}</td>
+              <td>{{stock.qteStock}}</td>
+
+              <td> <input type="submit"
+                          data-toggle="modal" data-target="#exampleModal"
+                          value="edit" class="btn btn-primary btn-sm m-1" (click)="update(stock)" >
+                <button (click)="delete(stock)" class="btn btn-danger btn-sm m-1">delete</button>
+                <button (click)="showProducts(stock)" class="btn btn-dark primary btn-sm m-1">showProducts</button></td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+
+      </div>
+      <div *ngIf="show3" class="card col-6 ml-2" style="height: 450px; transition: step-start ease-out">
+        <div class="card-header">
+          <h3 class="card-title">Simple Full Width Table</h3>
+
+          <div class="card-tools">
+         <span style="font-size: 1rem; color: red;">
+           <i (click)="show3=false" class="fa fa-times-circle "></i>
+         </span>
+
+
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div  class="card-body p-0">
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+            <table class="table">
+
               <thead>
-
+              <tr>
+                <th>code</th>
+                <th>libelle</th>
+                <th>prixUnitaire</th>
+                <th>Actions</th>
+              </tr>
               </thead>
+
               <tbody>
-              <div *ngFor="let stock of stocks">
-                <tr>
-                  <td>{{stock.idStock}}</td>
-                  <td>{{stock.libelleStock}}</td>
-                  <td>{{stock.qteMin}}</td>
-                  <td>{{stock.qteStock}}</td>
 
-                  <input type="submit" value="Update" class="btn btn-primary" (click)="update(stock)" >
-                  <button (click)="delete(stock)">delete </button>
-                  <button (click)="showProducts(stock)">showProducts</button>
+              <tr *ngFor="let produit of products ">
+                <td>{{produit.code}}</td>
+                <td>{{produit.libelle}}</td>
+                <td>{{produit.prixUnitaire}}</td>
 
-                </tr>
-              </div>
+
+
+
+
+
+                <td> <input type="submit" value="edit" class="btn btn-primary btn-sm m-1" (click)="update(stock)" >
+                  <button (click)="delete(stock)" class="btn btn-danger btn-sm m-1">delete</button>
+                  <button (click)="showProducts(stock)" class="btn btn-dark primary btn-sm m-1">showProducts</button></td>
+              </tr>
 
               </tbody>
             </table>
           </div>
-          <!-- /.card-body -->
         </div>
-        <!-- /.card -->
+        <!-- /.card-body -->
 
-
-
-        <!-- TO DO List -->
-        <!-- /.card -->
-      </section>
-      <!-- /.Left col -->
-
+      </div>
     </div>
-    <!-- /.row (main row) -->
-  </div><!-- /.container-fluid -->
-</section>
 
-<table border="1" class="table-bordered ">
-
-
-
-
-</table>
-<input type="submit" value="add stock" (click)="add()">
-<div *ngIf="show==true">
-  <app-add-stock (notif)="addStock($event)"></app-add-stock>
-</div>
-<div *ngIf="show2==true">
-  <app-add-stock [stock]="stock" (notif)="updateStock($event)"></app-add-stock>
-</div>
-<div *ngIf="show3==true">
-  <table border="1" class="table-bordered ">
-  <div *ngFor="let produit of products ">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <app-add-stock *ngIf="show2; else elseblock" [stock]="stock" (notif)="updateStock($event)"></app-add-stock>
+          <ng-template #elseblock>
+            <app-add-stock  (notif)="addStock($event)"></app-add-stock>
+          </ng-template>
+        </div>
+      </div>
+    </div>
 
   </div>
-
-  </table>
-</div>
-
+  <!-- /.container-fluid -->
+</section>

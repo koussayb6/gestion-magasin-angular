@@ -1,0 +1,15 @@
+.my-custom-scrollbar {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+.color-stock-close{
+  background-image: linear-gradient(to right, #f0f3bc, #ffecc9, #ffebe1, #fff0f7, #fff7ff, #fefaff, #fefdff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);}
+.color-stock-over{
+  background-image: linear-gradient(to right, #edc5c5, #f0cfd6, #f1dbe4, #f3e6f0, #f6f1f8, #f8f6fb, #fbfafd, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);}
+.color-stock-green{
+  background-image: linear-gradient(to right, #d9f5de, #d8f8ee, #dff9fa, #eafaff, #f6fbff, #fafcff, #fdfdff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);}
+

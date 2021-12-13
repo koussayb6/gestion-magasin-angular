@@ -1,0 +1,124 @@
+
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Dashboard</h1>
+      </div><!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard v1</li>
+        </ol>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+      <label >elements par page</label>
+      <select (change)="onTableSizeChange($event)" class="custom-select">
+        <option *ngFor="let size of tableSizes" [ngValue]="size">
+          {{ size }}
+        </option>
+      </select>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="card w-100 mx-1">
+        <div class="card-header">
+          <h3 class="card-title">Simple Full Width Table</h3>
+
+          <div class="card-tools">
+
+            <input type="submit" value="add produit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <table class="table">
+
+            <thead>
+            <tr>
+              <th></th>
+              <th>code</th>
+              <th>libelle</th>
+              <th>prixUnitaire</th>
+              <th>Catégorie</th>
+              <th>date d'ajout</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr *ngFor="let produit of produits | paginate : {
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+              };
+        let i = index" >
+              <td>  <img width="100rem" [src]="'data:image/png;base64,' + produit.picByte" class="img-fluid">
+              </td>
+              <td class="align-middle">{{produit.code}}</td>
+              <td class="align-middle">{{produit.libelle}}</td>
+              <td class="align-middle">{{produit.prixUnitaire}}</td>
+              <td class="align-middle">{{produit.detailProduit.categorieProduit}}</td>
+              <td class="align-middle">{{produit.detailProduit.dateCreation}}</td>
+
+
+
+
+
+
+              <td class="align-middle"> <input type="submit" value="edit" class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="#exampleModal" (click)="update(produit)" >
+                <button (click)="delete(produit)" class="btn btn-danger btn-sm m-1">delete</button>
+                <!-- <button (click)="showProducts(stock)" class="btn btn-dark primary btn-sm m-1">showProducts</button>
+                 --></td>
+            </tr>
+
+            </tbody>
+          </table>
+          <pagination-controls
+            [responsive]=true
+            previousLabel="Prev"
+            nextLabel="Next"
+            (pageChange)="onTableDataChange($event)">
+          </pagination-controls>
+
+        </div>
+        <!-- /.card-body -->
+
+      </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <app-edit-produit *ngIf="showEdit; else elseblock" [produit]="produit" (notif)="updateProduit($event)"></app-edit-produit>
+          <ng-template #elseblock>
+            <app-edit-produit  (notif)="addProduit($event)"></app-edit-produit>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+</section>
+
