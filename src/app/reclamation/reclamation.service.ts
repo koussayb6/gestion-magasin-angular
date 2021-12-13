@@ -26,7 +26,7 @@ export class ReclamationService {
   deleteReclamation( reclamation:Reclamation):Observable<Reclamation>{
     return this.http.delete<Reclamation>(this.baseurl+'deletereclamation/'+reclamation.idReclamation)
   }
-    updateReclamation(reclamation:Reclamation){
-    return this.http.put(this.baseurl+'updatereclamation', reclamation )
+    confirmeReclama(reclamation:Reclamation){
+    return this.http.put(this.baseurl+'confirmereclama', reclamation )
   }
 }
