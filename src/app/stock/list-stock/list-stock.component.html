@@ -26,6 +26,50 @@
         <div class="card-tools">
           <input type="submit" value="add stock" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="add()">
 
+    <!-- Main row -->
+    <div class="row">
+      <!-- Left col -->
+      <section class="col-lg-7 connectedSortable">
+        <!-- Custom tabs (Charts with tabs)-->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Gestion de stock</h3>
+
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead>
+
+              </thead>
+              <tbody>
+              <div *ngFor="let stock of stocks">
+                <tr>
+                  <td>{{stock.idStock}}</td>
+                  <td>{{stock.libelleStock}}</td>
+                  <td>{{stock.qteMin}}</td>
+                  <td>{{stock.qteStock}}</td>
+
+                  <input type="submit" value="Update" class="btn btn-primary" (click)="update(stock)" >
+                  <button (click)="delete(stock)">delete </button>
+                  <button (click)="showProducts(stock)">showProducts</button>
+
+                </tr>
+              </div>
+
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
         </div>
       </div>
       <!-- /.card-header -->
@@ -94,6 +138,10 @@
             <td>{{produit.libelle}}</td>
             <td>{{produit.prixUnitaire}}</td>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1313e82360febc9595cf13b677c052beb86a6ef1
 
 
 

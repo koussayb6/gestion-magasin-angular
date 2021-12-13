@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import { ProduitModule } from './produit/produit.module';
 import { FournisseurModule } from './fournisseur/fournisseur.module';
 import {NgxPaginationModule} from "ngx-pagination";
+import { ReclamationModule } from './reclamation/reclamation.module';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import {NgxPaginationModule} from "ngx-pagination";
         FormsModule,
         NgxPaginationModule,
         ProduitModule,
+        ReclamationModule,
         FournisseurModule
     ],
     providers: [],
