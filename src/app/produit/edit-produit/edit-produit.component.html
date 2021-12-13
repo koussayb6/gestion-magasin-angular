@@ -1,0 +1,55 @@
+
+<div class="modal-body">
+  <form #f="ngForm" id="addStock" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label for="libelle">libelle</label>
+      <input type="text" class="form-control" id="libelle"  name="libelle" ngModel [(ngModel)]="produit.libelle" >
+    </div>
+    <div class="form-group">
+      <label for="code">code produit</label>
+      <input type="text" class="form-control" id="code"  name="code" ngModel [(ngModel)]="produit.code" >
+    </div>
+    <div class="form-group">
+      <label for="prixUnitaire">prix unitaire</label>
+      <input type="text" class="form-control" id="prixUnitaire"  name="prixUnitaire" ngModel [(ngModel)]="produit.prixUnitaire">
+    </div>
+
+    <div class="form-group">
+      <label for="cat">categorie</label>
+      <select name="detailProduit" [(ngModel)]="produit.detailProduit"  id="cat" class="form-control" (ngModelChange)="setCategorie($event)">
+        <option *ngFor="let cat of categories"  [ngValue]="cat" >{{cat.categorieProduit}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="stock">Stock</label>
+      <select name="stock" [ngModel]="stock" id="stock" class="form-control" (ngModelChange)="setStock($event)">
+        <option *ngFor="let stoc of stocks" [attr.selected]="stoc.idStock == 14 ? true : null"  [ngValue]="stoc" >{{stoc.libelleStock}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="rayon">Rayon</label>
+      <select name="rayon" [ngModel]="rayon" id="rayon" class="form-control" (ngModelChange)="setRayon($event)">
+        <option *ngFor="let rayo of rayons" [ngValue]="rayon" [attr.selected]="rayo == rayon ? true : null"  [ngValue]="rayo" >{{rayo.libelleRayon}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputFile">Image</label>
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" name="image" id="exampleInputFile" (change)="onfile($event)">
+          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+        </div>
+
+      </div>
+      <img [src]="imgUrl" *ngIf="imgUrl" style="width:25rem; margin-top: 20px ">
+
+    </div>
+
+
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <input type="submit" value="save" class="btn btn-primary" form="addStock" (click)="sendDataToParent(f)">
+</div>
