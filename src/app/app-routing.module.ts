@@ -5,9 +5,11 @@ import {ProduitModule} from "./produit/produit.module";
 import {FournisseurRoutingModule} from "./fournisseur/fournisseur-routing.module";
 import {FournisseurModule} from "./fournisseur/fournisseur.module";
 import {ReclamationModule} from "./reclamation/reclamation.module";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   {path:'', redirectTo:'home',pathMatch:'full'},
+  {path:'home', component:HomeComponent},
   {path: 'stocks',
     loadChildren: () =>
       import('./stock/stock.module').then((m) => StockModule)},
@@ -18,7 +20,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./fournisseur/fournisseur.module').then((m) => FournisseurModule)},
 
-  {path:'', redirectTo:'home',pathMatch:'full'},
   {path: 'reclamations',
     loadChildren: () =>
       import('./reclamation/reclamation.module').then((m) => ReclamationModule)}

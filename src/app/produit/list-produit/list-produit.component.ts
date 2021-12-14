@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProduitService} from "../produit.service";
 import {Produit} from "../Produit";
 import {Stock} from "../../stock/Stock";
+import {Options} from "@angular-slider/ngx-slider";
 
 @Component({
   selector: 'app-list-produit',
@@ -17,13 +18,45 @@ export class ListProduitComponent implements OnInit {
   count = 0;
   tableSize = 7;
   tableSizes = [3, 6, 9, 12];
+
+  value: number = 0;
+  highValue: number = 1000;
+  options: Options = {
+    floor: 0,
+    ceil: 1000,
+    step: 5,
+    showTicks: true
+  };
+  categorie!:any;
+  categories: any[] = [
+    { categorieProduit: 'ALIMENTAIRE' },
+    { categorieProduit: 'ELECTROMENAGER' },
+    { categorieProduit: 'QUINCAILLERIE' },
+    { categorieProduit: 'ALL' }
+
+  ];
+  searchText:any="";
+  index!:any;
+
   constructor(private serviceProd:ProduitService) { }
 
   ngOnInit(): void {
     this.getAll();
   }
+  filter(){
+    this.serviceProd.getAll(this.value,this.highValue, this.searchText).subscribe((resultat)=>{
+        console.log(resultat);
+
+        this.produits=resultat;
+
+      },
+      (error)=>{
+        console.log(error.status)
+      }
+    );
+  }
   getAll(){
-    this.serviceProd.getAll().subscribe((resultat)=>{
+    this.serviceProd.getAll(this.value,this.highValue, this.searchText).subscribe((resultat)=>{
         console.log(resultat);
 
         this.produits=resultat;
@@ -66,14 +99,14 @@ export class ListProduitComponent implements OnInit {
     );
 
   }
-  update(produit:any){
+  update(produit:any,i:any){
     this.showEdit=true;
     this.produit=produit;
+    this.index=i;
 
   }
   updateProduit(event:any){
-    let close= document.getElementById("close")
-    close?.click()
+
     let idstock= event[3].idStock;
     let idrayon= event[2].idRayon;
     let data= new FormData();
@@ -84,13 +117,14 @@ export class ListProduitComponent implements OnInit {
     data.append('cat', event[4].categorieProduit);
     this.serviceProd.updateProduit(data,idstock,idrayon).subscribe((resultat)=>{
         console.log(resultat);
-
-      },
+        this.produits[this.index]=resultat;
+        },
       (error)=>{
         console.log(error.status)
       }
     );
-
+    let close= document.getElementById("close")
+    close?.click()
     this.showEdit=false;
   }
   delete(produit:Produit){
@@ -100,5 +134,8 @@ export class ListProduitComponent implements OnInit {
       this.serviceProd.deleteProduit(produit).subscribe(
         () => this.produits = this.produits.filter(e => e.idProduit != produit.idProduit),
       );}
+  }
+  setCategorie(event:any){
+    this.categorie=event;
   }
 }
