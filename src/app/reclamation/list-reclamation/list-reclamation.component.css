@@ -11,3 +11,19 @@
 ::ng-deep .colorRed{
   color:red
 }
+.color-stock-over{
+  background-image: linear-gradient(to right, #edc5c5, #f0cfd6, #f1dbe4, #f3e6f0, #f6f1f8, #f8f6fb, #fbfafd, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);}
+.color-stock-green{
+  background-image: linear-gradient(to right, #d9f5de, #d8f8ee, #dff9fa, #eafaff, #f6fbff, #fafcff, #fdfdff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);}
+
+.ng-valid[required], .ng-valid.required {
+
+  border-left: 5px solid green;
+
+}
+
+.ng-invalid:not(form) {
+
+  border-left: 5px solid red;
+
+}

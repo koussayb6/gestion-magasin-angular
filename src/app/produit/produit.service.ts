@@ -30,4 +30,11 @@ export class ProduitService {
 
     return this.http.put<Produit>(this.baseurl+'updateproduit/'+idRayon+'/'+idStock, data)
   }
+
+  addFavorie(idClient:any , idProduit:any):Observable<Produit[]>{
+    return this.http.get<Produit[]>(this.baseurl+'addfavorie/'+idClient+'/'+idProduit);
+  }
+
+
+
 }

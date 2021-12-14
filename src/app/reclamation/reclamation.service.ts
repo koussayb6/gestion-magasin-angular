@@ -29,4 +29,8 @@ export class ReclamationService {
     confirmeReclama(reclamation:Reclamation){
     return this.http.put(this.baseurl+'confirmereclama', reclamation )
   }
+  refuseReclama(reclamation:Reclamation){
+    return this.http.put(this.baseurl+'refusereclama', reclamation )
+  }
+
 }

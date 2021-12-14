@@ -16,7 +16,9 @@ export class ListReclamationComponent implements OnInit {
   Reclamation!:Reclamation[];
   reclamation!:Reclamation;
   show:boolean=false;
-  show2:boolean=false;
+  show2!:String;
+  show3:boolean=false;
+
   isClicked = false;
   flag : any = false;
   constructor(private ReclamationService:ReclamationService) { }
@@ -64,14 +66,20 @@ export class ListReclamationComponent implements OnInit {
   }
 
   update(reclamation:any){
-    this.show2=true;
+    this.show2='true';
     this.reclamation=reclamation;
 
   }
-  confirmeReclama(reclamation:Reclamation){
+  confirmeReclama(reclamation:Reclamation,i:any){
+    this.Reclamation[i].statue="Confirmer";
     this.ReclamationService.confirmeReclama(reclamation).subscribe();
-    this.show2=false;
-    this.toggle = !this.toggle;
-    this.status = this.toggle ? 'Confirmer' : 'Disable';
+
+  }
+
+  refuseReclama(reclamation:Reclamation,i:any){
+    this.Reclamation[i].statue="Refuser";
+    this.ReclamationService.refuseReclama(reclamation).subscribe();
+    this.show2='false';
+
   }
 }

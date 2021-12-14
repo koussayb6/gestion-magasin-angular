@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Stock} from "../../stock/Stock";
 import {Notifications} from "../Notifications";
 import {NotificationsService} from "../notifications.service";
@@ -9,7 +9,7 @@ import {NotificationsService} from "../notifications.service";
   styleUrls: ['./list-notifications.component.css']
 })
 export class ListNotificationsComponent implements OnInit {
-  notifications!:Notifications[];
+  @Output() notif=new EventEmitter();
   Notifications!:Notifications[];
   constructor(private NotificationsService:NotificationsService) { }
 
@@ -17,6 +17,8 @@ export class ListNotificationsComponent implements OnInit {
     this.NotificationsService.getAll().subscribe((resultat)=>{
         console.log(resultat);
         this.Notifications=resultat;
+        this.notif.emit(resultat.length);
+
       },
       (error)=>{
         console.log(error.status)
