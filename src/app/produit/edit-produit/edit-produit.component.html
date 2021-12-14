@@ -4,34 +4,87 @@
 
     <div class="form-group">
       <label for="libelle">libelle</label>
-      <input type="text" class="form-control" id="libelle"  name="libelle" ngModel [(ngModel)]="produit.libelle" >
+      <input type="text" class="form-control" [ngClass]="{'is-invalid': libelle.invalid&&libelle.touched,'is-valid': libelle.valid&&libelle.touched}"
+             id="libelle"  name="libelle" ngModel #libelle="ngModel" required minlength="3" [(ngModel)]="produit.libelle" >
+      <div  *ngIf="libelle.invalid&&libelle.touched">
+        <div *ngIf="libelle.errors?.required">
+         <span style="color: darkred">required</span>
+        </div>
+        <div style="color: darkred" *ngIf="libelle.errors?.minlength">
+        <span style="color: darkred">at least 3 caracters</span>
+
+        </div>
+
+      </div>
     </div>
     <div class="form-group">
       <label for="code">code produit</label>
-      <input type="text" class="form-control" id="code"  name="code" ngModel [(ngModel)]="produit.code" >
+      <input type="text" class="form-control" id="code" [ngClass]="{'is-invalid': code.invalid&&code.touched,'is-valid': code.valid&&code.touched}"
+             name="code" ngModel #code="ngModel" required minlength="7" [(ngModel)]="produit.code" >
+      <div  *ngIf="code.invalid&&code.touched">
+        <div *ngIf="code.errors?.required">
+          <span style="color: darkred">required</span>
+        </div>
+        <div style="color: darkred" *ngIf="code.errors?.minlength">
+          <span style="color: darkred">at least 7 caracters</span>
+
+        </div>
+
+      </div>
     </div>
     <div class="form-group">
       <label for="prixUnitaire">prix unitaire</label>
-      <input type="text" class="form-control" id="prixUnitaire"  name="prixUnitaire" ngModel [(ngModel)]="produit.prixUnitaire">
+      <input type="text" class="form-control" id="prixUnitaire"  name="prixUnitaire" ngModel  pattern="[0-9]*" #prix="ngModel"
+             [ngClass]="{'is-invalid': prix.invalid&&prix.touched,'is-valid': prix.valid&&prix.touched}" required [(ngModel)]="produit.prixUnitaire">
+      <div  *ngIf="prix.invalid&&prix.touched">
+        <div *ngIf="prix.errors?.required">
+          <span style="color: darkred">required</span>
+        </div>
+        <div style="color: darkred" *ngIf="prix.errors?.pattern">
+          <span style="color: darkred">must be a number</span>
+
+        </div>
+
+      </div>
     </div>
 
     <div class="form-group">
       <label for="cat">categorie</label>
-      <select name="detailProduit" [(ngModel)]="produit.detailProduit"  id="cat" class="form-control" (ngModelChange)="setCategorie($event)">
+      <select name="detailProduit" [(ngModel)]="categorie"  id="cat" class="form-control" required #cate="ngModel"
+              [ngClass]="{'is-invalid': cate.invalid&&cate.touched,'is-valid': cate.valid&&cate.touched}"  (ngModelChange)="setCategorie($event)">
         <option *ngFor="let cat of categories"  [ngValue]="cat" >{{cat.categorieProduit}}</option>
       </select>
+      <div  *ngIf="cate.invalid&&cate.touched">
+        <div *ngIf="cate.errors?.required">
+          <span style="color: darkred">required</span>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="stock">Stock</label>
-      <select name="stock" [ngModel]="stock" id="stock" class="form-control" (ngModelChange)="setStock($event)">
+      <select name="stock" [ngModel]="stock" id="stock" class="form-control" (ngModelChange)="setStock($event)"
+              required #stock="ngModel"
+              [ngClass]="{'is-invalid': stock.invalid&&stock.touched,'is-valid': stock.valid&&stock.touched}">
         <option *ngFor="let stoc of stocks" [attr.selected]="stoc.idStock == 14 ? true : null"  [ngValue]="stoc" >{{stoc.libelleStock}}</option>
       </select>
+      <div  *ngIf="stock.invalid&&stock.touched">
+        <div *ngIf="stock.errors?.required">
+          <span style="color: darkred">required</span>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="rayon">Rayon</label>
-      <select name="rayon" [ngModel]="rayon" id="rayon" class="form-control" (ngModelChange)="setRayon($event)">
+      <select name="rayon" [ngModel]="rayon" id="rayon" class="form-control" (ngModelChange)="setRayon($event)"
+              required #ray="ngModel"
+              [ngClass]="{'is-invalid': ray.invalid&&ray.touched,'is-valid': ray.valid&&ray.touched}">
         <option *ngFor="let rayo of rayons" [ngValue]="rayon" [attr.selected]="rayo == rayon ? true : null"  [ngValue]="rayo" >{{rayo.libelleRayon}}</option>
       </select>
+      <div  *ngIf="ray.invalid&&ray.touched">
+        <div *ngIf="ray.errors?.required">
+          <span style="color: darkred">required</span>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="exampleInputFile">Image</label>
@@ -51,5 +104,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <input type="submit" value="save" class="btn btn-primary" form="addStock" (click)="sendDataToParent(f)">
+  <input type="submit" value="save" class="btn btn-primary" form="addStock" [disabled]="f.invalid" (click)="sendDataToParent(f)">
 </div>

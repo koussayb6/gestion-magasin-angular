@@ -12,8 +12,11 @@ export class ProduitService {
   baseurl=environment.url
   constructor( private http:HttpClient) { }
 
-  getAll():Observable<Produit[]>{
-    return this.http.get<Produit[]>(this.baseurl+'produits');
+  getAll(min:any,max:any, libelle:any):Observable<Produit[]>{
+    return this.http.get<Produit[]>(this.baseurl+'produits?libelle='+libelle+'&minPrix='+min+'&maxPrix='+max);
+  }
+  getOne(id:any):Observable<Produit>{
+    return this.http.get<Produit>(this.baseurl+'produit/'+id);
   }
 
   addProduit(data:any, idStock:any, idRayon:any):Observable<Produit>{

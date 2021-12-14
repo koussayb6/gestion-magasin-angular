@@ -8,6 +8,10 @@ import {FormsModule} from "@angular/forms";
 import { ListRayonComponent } from './list-rayon/list-rayon.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { ListFavorieComponent } from './list-favorie/list-favorie.component';
+import {NgxSliderModule} from "@angular-slider/ngx-slider";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import { OneProduitComponent } from './one-produit/one-produit.component';
+import {PanierComponent} from "./panier/panier.component";
 
 
 @NgModule({
@@ -15,13 +19,18 @@ import { ListFavorieComponent } from './list-favorie/list-favorie.component';
     ListProduitComponent,
     EditProduitComponent,
     ListRayonComponent,
-    ListFavorieComponent
+    ListFavorieComponent,
+    OneProduitComponent,
+    PanierComponent
   ],
     imports: [
         CommonModule,
         ProduitRoutingModule,
         FormsModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        NgxSliderModule,
+        Ng2SearchPipeModule
+
     ]
 })
 export class ProduitModule { }
