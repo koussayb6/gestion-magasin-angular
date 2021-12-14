@@ -6,6 +6,8 @@ import {FournisseurRoutingModule} from "./fournisseur/fournisseur-routing.module
 import {FournisseurModule} from "./fournisseur/fournisseur.module";
 import {ReclamationModule} from "./reclamation/reclamation.module";
 import {HomeComponent} from "./home/home.component";
+import {FactureModule} from "./facture/facture.module";
+import {NotificationsModule} from "./notifications/notifications.module";
 
 const routes: Routes = [
   {path:'', redirectTo:'home',pathMatch:'full'},
@@ -13,6 +15,10 @@ const routes: Routes = [
   {path: 'stocks',
     loadChildren: () =>
       import('./stock/stock.module').then((m) => StockModule)},
+  {path: 'factures',
+    loadChildren: () =>
+      import('./facture/facture.module').then((m) => FactureModule)},
+
   {path: 'produits',
     loadChildren: () =>
       import('./produit/produit.module').then((m) => ProduitModule)},
@@ -22,7 +28,11 @@ const routes: Routes = [
 
   {path: 'reclamations',
     loadChildren: () =>
-      import('./reclamation/reclamation.module').then((m) => ReclamationModule)}
+      import('./reclamation/reclamation.module').then((m) => ReclamationModule)},
+  {path:'', redirectTo:'home',pathMatch:'full'},
+  {path: 'notifications',
+    loadChildren: () =>
+      import('./notifications/notifications.module').then((m) => NotificationsModule)}
 ];
 
 @NgModule({

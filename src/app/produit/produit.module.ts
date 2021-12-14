@@ -10,6 +10,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {NgxSliderModule} from "@angular-slider/ngx-slider";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import { OneProduitComponent } from './one-produit/one-produit.component';
+import {PanierComponent} from "./panier/panier.component";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { OneProduitComponent } from './one-produit/one-produit.component';
     ListProduitComponent,
     EditProduitComponent,
     ListRayonComponent,
-    OneProduitComponent
+    OneProduitComponent,
+    PanierComponent
   ],
     imports: [
         CommonModule,

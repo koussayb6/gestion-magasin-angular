@@ -11,6 +11,8 @@ import { FournisseurModule } from './fournisseur/fournisseur.module';
 import {NgxPaginationModule} from "ngx-pagination";
 import { ReclamationModule } from './reclamation/reclamation.module';
 import { HomeComponent } from './home/home.component';
+import { NotificationsModule } from './notifications/notifications.module';
+import { FactureModule } from './facture/facture.module';
 
 @NgModule({
     declarations: [
@@ -27,6 +29,8 @@ import { HomeComponent } from './home/home.component';
         NgxPaginationModule,
         ProduitModule,
         ReclamationModule,
+        NotificationsModule,
+        FactureModule,
         FournisseurModule
     ],
     providers: [],
