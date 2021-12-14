@@ -7,13 +7,15 @@ import { EditProduitComponent } from './edit-produit/edit-produit.component';
 import {FormsModule} from "@angular/forms";
 import { ListRayonComponent } from './list-rayon/list-rayon.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {PanierComponent} from "./panier/panier.component";
 
 
 @NgModule({
   declarations: [
     ListProduitComponent,
     EditProduitComponent,
-    ListRayonComponent
+    ListRayonComponent,
+    PanierComponent
   ],
     imports: [
         CommonModule,

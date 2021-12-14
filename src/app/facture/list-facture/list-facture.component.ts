@@ -75,15 +75,7 @@ export class ListFactureComponent implements OnInit {
         () => this.factures = this.factures.filter(e => e.idFacture != facture.idFacture),
       );}
   }
- /* update(stock:any){
-    this.show2=true;
-    this.stock=stock;
 
-  }
-  updateStock(stock:any){
-    this.serviceStock.updateStock(stock).subscribe();
-    this.show2=false;
-  }*/
   showProducts(facture:Facture){
     this.show3=true;
     this.detailFactures=facture.detailFactures;

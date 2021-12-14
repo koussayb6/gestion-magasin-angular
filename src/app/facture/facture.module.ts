@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FactureRoutingModule } from './facture-routing.module';
 import { ListFactureComponent } from './list-facture/list-facture.component';
 import { EditFactureComponent } from './edit-facture/edit-facture.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { EditFactureComponent } from './edit-facture/edit-facture.component';
   ],
   imports: [
     CommonModule,
-    FactureRoutingModule
+    FactureRoutingModule,
+    FormsModule
   ]
 })
 export class FactureModule { }
