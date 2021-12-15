@@ -35,37 +35,8 @@ export class ListFactureComponent implements OnInit {
   add(){
     this.show=true;
   }
-  addStock(facture:any){
-    this.factures.push(facture);
-    this.show=false;
-    this.servcefacture.addFacture(facture, 2).subscribe((resultat)=>{
-        console.log(resultat);
-        //this.stocks=resultat;
-      },
-      (error)=>{
-        console.log(error.status)
-      }
-    );
 
-  }
-  addFacturetest(){
-    let facture= new Facture();
-    let produit= new Produit();
-    produit.idProduit=1;
-    let detail= new DetailFacture();
-    detail.qte=10;
-    detail.pourcentageRemise=10;
-    detail.produit=produit;
-    facture.detailFactures.push(detail);
-    this.servcefacture.addFacture(facture, 2).subscribe((resultat)=>{
-        console.log(resultat);
-        //this.stocks=resultat;
-      },
-      (error)=>{
-        console.log(error.status)
-      }
-    );
-  }
+
 
   cancel(facture:Facture){
     var result=confirm("sure?");

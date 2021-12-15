@@ -11,6 +11,7 @@ import {NgxSliderModule} from "@angular-slider/ngx-slider";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import { OneProduitComponent } from './one-produit/one-produit.component';
 import {PanierComponent} from "./panier/panier.component";
+import { CodePromoComponent } from './code-promo/code-promo.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {PanierComponent} from "./panier/panier.component";
     EditProduitComponent,
     ListRayonComponent,
     OneProduitComponent,
-    PanierComponent
+    PanierComponent,
+    CodePromoComponent
   ],
     imports: [
         CommonModule,

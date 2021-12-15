@@ -19,8 +19,8 @@ export class FactureService {
     return this.http.get<Facture>(this.baseurl+'facture/'+id);
   }
 
-  addFacture(facture:Facture, id:any){
-    return this.http.post(this.baseurl+'addfacture/'+id, facture, {
+  addFacture(facture:Facture, id:any, code:any){
+    return this.http.post(this.baseurl+'addfacture/'+id+'?code='+code, facture, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

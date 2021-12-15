@@ -21,6 +21,10 @@ export class PanierService {
     return this.http.get<Panier>(this.baseurl+'addpanier/'+idClient+'/'+idProduit+'/'+qte)
 
   }
+  modifierstatus(status:any, panier:Panier){
+    return this.http.put<Panier>(this.baseurl+'modifierstatus?status='+status, panier);
+
+  }
 
 
 }

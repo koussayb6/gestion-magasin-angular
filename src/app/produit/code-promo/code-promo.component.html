@@ -1,0 +1,14 @@
+<form #f="ngForm" (ngSubmit)="sendData(f)">
+
+  <p>GIVE CODE</p> <input id="code" name="code" ngModel minlength="6" [ngClass]="{'is-invalid': code.invalid&&code.touched,'is-valid': code.valid&&code.touched}"
+                          #code="ngModel" placeholder="Enter your code">
+  <div  *ngIf="code.invalid&&code.touched">
+
+    <div style="color: darkred" *ngIf="code.errors?.minlength">
+      <span style="color: darkred">at least 6 caracters</span>
+
+    </div>
+
+  </div>
+  <input type="submit" value="apply">
+</form>

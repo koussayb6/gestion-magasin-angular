@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProduitService} from "../produit.service";
 import {Produit} from "../Produit";
+import {PanierService} from "../panier.service";
 
 @Component({
   selector: 'app-one-produit',
@@ -11,7 +12,8 @@ import {Produit} from "../Produit";
 export class OneProduitComponent implements OnInit {
     idProduit!:any;
     produit!:Produit;
-  constructor(private router:ActivatedRoute, private serviceProd:ProduitService) { }
+    qte!:any;
+  constructor(private router:ActivatedRoute, private serviceProd:ProduitService, private servicePanier:PanierService) { }
 
   ngOnInit(): void {
     this.router.paramMap.subscribe(params => {
@@ -27,6 +29,11 @@ export class OneProduitComponent implements OnInit {
           console.log(error.status)
         }
     );
+  }
+  addCart(){
+    this.servicePanier.addpanier(2,this.idProduit,this.qte).subscribe((res)=>{
+    });
+    alert('ajouté au panier')
   }
 
 }

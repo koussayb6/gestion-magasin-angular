@@ -7,7 +7,7 @@ import {PanierComponent} from "./panier/panier.component";
 const routes: Routes = [
   {path:'', component:ListProduitComponent},
   {path: 'prod/:id', component: OneProduitComponent},
-  {path:'panier', component:PanierComponent}
+  {path:'panier/:id', component:PanierComponent}
 ];
 
 @NgModule({

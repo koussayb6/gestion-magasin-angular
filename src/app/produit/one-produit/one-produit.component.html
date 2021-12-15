@@ -26,8 +26,8 @@
 
             <div class="col text-right align-self-center">
               <label for="q">quantité</label>
-              <input id="q" type="number">
-              <button class="btn ml-3">Ajouter au panier</button>
+              <input id="q" type="number" [(ngModel)]="qte">
+              <button class="btn ml-3" (click)="addCart()">Ajouter au panier</button>
               <button class="btn ml-3">Ajouter au favoris</button>
             </div>
           </div>
