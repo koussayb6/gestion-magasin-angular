@@ -9,7 +9,10 @@ import {PanierService} from "./produit/panier.service";
 export class AppComponent{
   title = 'gestion-magasin-angular';
 
-
+  nbrNotif!:any ;
+  countNotif(event:any){
+    this.nbrNotif=event;
+  }
 
 
 }

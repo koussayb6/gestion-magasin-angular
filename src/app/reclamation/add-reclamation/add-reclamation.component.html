@@ -1,18 +1,78 @@
-<form #f="ngForm">
-  <label>idReclamation</label>
-  <input type="text" class="form-control"  name="idReclamation" ngModel [(ngModel)]="reclamation.idReclamation">
+<div class="modal-body">
+<form #f="ngForm" id="addrec">
 
-  <label>subject</label>
-  <input type="text" class="form-control" name="subject" ngModel [(ngModel)]="reclamation.subject">
 
+    <div class="form-group">
+  <label >subject</label>
+  <input type="text" class="form-control" id="subject" name="subject" ngModel [(ngModel)]="reclamation.subject" required minlength="4"
+         #name="ngModel">
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+           class="alert">
+
+        <div *ngIf="name.errors?.['required']">
+          Subject is required.
+        </div>
+        <div *ngIf="name.errors?.['minlength']">
+          Subject must be at least 4 characters long.
+        </div>
+
+      </div>
+      </div>
+      <div class="form-group">
   <label>description</label>
-  <input type="text" class="form-control"  name="description" ngModel [(ngModel)]="reclamation.description">
+  <input type="text" class="form-control" id="description"  name="description" ngModel [(ngModel)]="reclamation.description" required minlength="4"#name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert">
 
-  <label>statue</label>
-  <input type="text" class="form-control"  name="statue" ngModel [(ngModel)]="reclamation.statue">
+          <div *ngIf="name.errors?.['required']">
+            Description is required.
+          </div>
+          <div *ngIf="name.errors?.['minlength']">
+            Description must be at least 4 characters long.
+          </div>
 
-  <label>Type De Reclamation</label>
-  <input type="text" class="form-control" name="typereclamation" ngModel [(ngModel)]="reclamation.typereclamation">
+        </div>
+        </div>
+        <div class="form-group">
+  <label>status</label>
+  <input type="text" class="form-control"   name="statue"  [(ngModel)]="reclamation.statue" required minlength="4"
+          #name="ngModel">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+               class="alert">
 
-  <input type="submit" value="save" (click)="sendDataToParent(f.value)">
+            <div *ngIf="name.errors?.['required']">
+              Status is required.
+            </div>
+            <div *ngIf="name.errors?.['minlength']">
+              Status must be at least 4 characters long.
+            </div>
+
+
+          </div>
+        </div>
+
+          <div class="form-group">
+  <label>Type De Reclamation(SERVICE/PRODUCT)</label>
+  <input type="text" class="form-control" name="typereclamation" ngModel [(ngModel)]="reclamation.typereclamation"required minlength="4" #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                 class="alert">
+
+              <div *ngIf="name.errors?.['required']">
+                Type De Reclamation is required.
+              </div>
+              <div *ngIf="name.errors?.['minlength']">
+                Type De Reclamation must be at least 4 characters long.
+              </div>
+
+
+            </div>
+          </div>
 </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <input type="submit" value="save" class="btn btn-primary" form="addrec" (click)="sendDataToParent(f.value)" [disabled]="f.invalid">
+</div>
+
+

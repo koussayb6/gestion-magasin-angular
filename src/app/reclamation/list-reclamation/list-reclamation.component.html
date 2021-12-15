@@ -18,62 +18,61 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
+    <div class="row mx-1">
+      <div [ngClass]="{'col-5' : show3}" style="transition: 0.3s ease-in-out all" class="card w-100">
+        <div class="card-header">
+          <h3 class="card-title">Gestion de stock</h3>
 
-    <!-- Main row -->
-    <div class="row">
-      <!-- Left col -->
-      <section class="col-lg-7 connectedSortable">
-        <!-- Custom tabs (Charts with tabs)-->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Gestion de stock</h3>
+          <div class="card-tools">
+            <input type="submit" value="Ajouter Reclamation" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="add()">
 
-            <div class="card-tools">
-              <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                <div class="input-group-append">
-                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                </div>
-              </div>
-            </div>
           </div>
-          <!-- /.card-header -->
-          <div class="card-body table-responsive p-0">
-            <table class="table table-hover text-nowrap" border="3">
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+            <table class="table">
               <thead>
-
+              <tr>
+                <th>subject</th>
+                <th>description</th>
+                <th>statue</th>
+                <th>typereclamation</th>
+                <th>Actions</th>
+              </tr>
               </thead>
               <tbody>
-              <div *ngFor="let reclamation of Reclamation ">
-                <tr [ngClass]="{ 'colorRed' :flag }">
-                  <td>{{reclamation.idReclamation}}</td>
+                <tr *ngFor="let reclamation of Reclamation; let i=index " [ngClass]="{'color-stock-green' : reclamation.statue=='Confirmer', 'color-stock-over' : reclamation.statue=='Refuser'}">
                   <td>{{reclamation.subject}}</td>
                   <td>{{reclamation.description}}</td>
                   <td>{{reclamation.statue}}</td>
                   <td>{{reclamation.typereclamation}}</td>
-          <input type="submit" value="Confirme" color="green"  (click)="confirmeReclama(reclamation)"
-                    [ngClass]="{'green' : toggle, 'red': !toggle}">
-                  <button (click)="delete(reclamation)">delete </button>
+                  <td>
+                    <button type="submit" value="Confirme" color="green"  (click)="confirmeReclama(reclamation,i)" class="btn btn-outline-success btn-sm m-1">Confirmer</button>
+                    <button type="submit" value="Refuser" color="red"  (click)="refuseReclama(reclamation,i)" class="btn btn-outline-danger btn-sm m-1">Refuser</button>
 
-
-
-                 <!-- <button (click)="showProducts(reclamation)">showProducts</button> -->
+                    <button (click)="delete(reclamation)" class="btn btn-danger primary btn-sm m-1">delete </button></td>
 
 
                 </tr>
-              </div>
 
               </tbody>
             </table>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <app-add-reclamation  (notif)="addReclamation($event)"></app-add-reclamation>
 
-            <input type="submit" value="Ajouter Reclamation" (click)="add()">
-            <div *ngIf="show==true">
-              <app-add-reclamation (notif)="addReclamation($event)"></app-add-reclamation>
+                </div>
+              </div>
             </div>
-            <div *ngIf="show2==true">
-              <app-edit-reclamation [reclamation]="reclamation" (notif)="confirmeReclama($event)"></app-edit-reclamation>
-            </div>
+
+
           </div>
 
           <!-- /.card-body -->
@@ -84,17 +83,11 @@
 
         <!-- TO DO List -->
         <!-- /.card -->
-      </section>
       <!-- /.Left col -->
 
     </div>
     <!-- /.row (main row) -->
   </div><!-- /.container-fluid -->
 </section>
-
-
-
-
-
 
 
